@@ -1,0 +1,115 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "enomis-site.js"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Gaegu))/i]",
+        "message": "Font not provided by the design system. Available: Gaegu."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|href|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, href, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|ghost|soft)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'ghost' | 'soft'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--brown",
+      "--cocoa",
+      "--cream",
+      "--cream-soft",
+      "--font",
+      "--lilac",
+      "--maxw",
+      "--mint",
+      "--orange",
+      "--orange-deep",
+      "--peach",
+      "--shadow",
+      "--shadow-lift",
+      "--teal",
+      "--teal-deep",
+      "--wob",
+      "--wob2",
+      "--yellow"
+    ],
+    "tokenKinds": {
+      "--cream": "color",
+      "--cream-soft": "color",
+      "--mint": "color",
+      "--peach": "color",
+      "--lilac": "color",
+      "--teal": "color",
+      "--teal-deep": "color",
+      "--orange": "color",
+      "--orange-deep": "color",
+      "--yellow": "color",
+      "--cocoa": "color",
+      "--brown": "color",
+      "--font": "font",
+      "--maxw": "spacing",
+      "--wob": "radius",
+      "--wob2": "radius",
+      "--shadow": "shadow",
+      "--shadow-lift": "shadow"
+    },
+    "fontFamilies": [
+      "Gaegu"
+    ]
+  }
+}
